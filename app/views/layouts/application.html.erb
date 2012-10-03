@@ -7,8 +7,40 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="navbar">
+    <div class="navbar-inner">
+      <spam class="brand">Stranger</spam>
+      <ul class="nav">
+    	<li><a href="#login" role="button" data-toggle="modal">LogIn</a></li>
+    	<li><a href="/users/new">SignUp</a></li>
+      </ul>
+    </div>
+  </div>
 
-<%= yield %>
 
+    <div class="modal hide fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">LogIn</h3>
+    </div>
+    <div class="modal-body">
+	 <%= form_tag(:controller => "users", :action => "new", :method => "get", :class => "form-horizontal") do %>
+	  <p>
+	    <%= label_tag :email %><br />
+	    <%= text_field_tag :email, params[:email] %>
+	  </p>
+	  <p>
+	    <%= label_tag :password %><br />
+	    <%= password_field_tag :password %>
+	  </p>
+	  <%= submit_tag "Log in", :class => 'btn' %>
+	<% end %>
+</div>
+    </div>
+  <div class="container">
+
+  
+    <%= yield %>
+  </div>
 </body>
 </html>
