@@ -1,7 +1,7 @@
 $ ->
   $('form').on 'ajax:complete', (xhr, status) ->
     data = status.responseText
-    if data == 'active'
+    if data == 'active' or data == 'not_activate'
       window.location.reload()
     if data == 'Error'
       $("#alert").remove()

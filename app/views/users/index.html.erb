@@ -2,20 +2,18 @@
 <h1>Listing users</h1>
 
 <table class="table table-striped"> <tr>
+    <th>Gravatar</th>
     <th>Login</th>
     <th>Fullname</th>
     <th>Email</th>
-    <th>Password</th>
-    <th>Two step_auth</th>
   </tr>
 
 <% @users.each do |user| %>
   <tr>
+    <td><%= image_tag generation_link_to_gravatar(user.email) %></td>
     <td><%= user.login %></td>
     <td><%= user.fullname %></td>
     <td><%= user.email %></td>
-    <td><%= user.password_digest %></td>
-    <td><%= user.two_step_auth %></td>
   </tr>
 <% end %>
 </table>
