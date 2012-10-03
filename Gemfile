@@ -10,7 +10,9 @@ gem 'sqlite3'
 group :development, :test do
   gem 'rspec-rails'
 end
- 
+
+gem 'simplecov', :require => false, :group => :test
+
 gem 'capybara', group: :test
 # Gems used only for assets and not required
 # in production environments by default.
