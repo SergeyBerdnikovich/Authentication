@@ -27,15 +27,18 @@ class User < ActiveRecord::Base
     def create_code
       random = Random.new
       code = random.rand(100000..999999)
-      self.activetion_code = Digest::MD5.hexdigest(code.to_s)
+      code_hash = Digest::MD5.hexdigest(code.to_s)
+      self.update_attribute(:activetion_code, code_hash)
       self.token_at = Time.now
 
       code
     end
 
-    def activate!(code)
-      if (31.seconds.ago < self.token_at) && (self.activetion_code == Digest::MD5.hexdigest(code.to_s))
+    def activate!(code)    
+    if (31.seconds.ago.to_i < self.token_at.to_i) && (self.activetion_code == Digest::MD5.hexdigest(code))
         self.update_attribute(:confirmed, true)
+
+        true
       else
         nil
       end

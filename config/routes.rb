@@ -5,6 +5,11 @@ Auth::Application.routes.draw do
 
   resources :users
 
+  match "Signup" => "users#new"
+
+  post "first_step" => "session#first_auth", :as => "first_step"
+  get "Logout" => "session#destroy", :as => "Logout"
+  post "second_step" => "session#second_auth", :as => "second_step"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -54,7 +59,7 @@ Auth::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'users#index'
 
   # See how all your routes lay out with "rake routes"
 

@@ -7,12 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%unless current_user %>
   <div class="navbar">
     <div class="navbar-inner">
       <spam class="brand">Stranger</spam>
       <ul class="nav">
     	<li><a href="#login" role="button" data-toggle="modal">LogIn</a></li>
-    	<li><a href="/users/new">SignUp</a></li>
+    	<li><a href="/Signup">SignUp</a></li>
+      <li><a href="/admin">Admin</a></li>
       </ul>
     </div>
   </div>
@@ -24,10 +26,10 @@
     <h3 id="myModalLabel">LogIn</h3>
     </div>
     <div class="modal-body">
-	 <%= form_tag(:controller => "users", :action => "new", :method => "get", :class => "form-horizontal") do %>
+	 <%= form_tag( first_step_path, :remote => true, :class => "form-horizontal") do %>
 	  <p>
-	    <%= label_tag :email %><br />
-	    <%= text_field_tag :email, params[:email] %>
+	    <%= label_tag :email_or_login %><br />
+	    <%= text_field_tag :email_or_login %>
 	  </p>
 	  <p>
 	    <%= label_tag :password %><br />
@@ -37,6 +39,18 @@
 	<% end %>
 </div>
     </div>
+    <%else%>
+    <div class="navbar">
+    <div class="navbar-inner">
+      <spam class="brand"><%= current_user.login %></spam>
+      <ul class="nav">
+      <li><a href="/Logout">LogOut</a></li>
+      <li><a href="/Signup">Edit My Info</a></li>
+      <li><a href="/admin">Admin</a></li>
+      </ul>
+    </div>
+  </div>
+  <%end%>
   <div class="container">
 
   
