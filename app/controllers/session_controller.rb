@@ -30,7 +30,6 @@ def second_auth
     end
 end
 
-
 def destroy
   user = User.find(session[:user_id])
   user.deactivate!
