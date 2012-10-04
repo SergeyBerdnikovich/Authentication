@@ -1,8 +1,6 @@
 $ ->
   $('form').on 'ajax:complete', (xhr, status) ->
     data = status.responseText
-    if data == 'active' or data == 'not_activate'
-      window.location.reload()
     if data == 'Error'
       $("#alert").remove()
       $(".form-horizontal").before("<p id = 'alert' class = 'text-error'>Invalid data</p>")

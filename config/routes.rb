@@ -3,10 +3,12 @@ Auth::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  resources :users
+  resources :users, :only => [:new, :create, :index]
 
   match "Signup" => "users#new"
-
+  put "update" => "users#update", :as => "update"
+  get "edit" => "users#edit", :as => "edit"
+  get "show" => "users#show", :as => "show"
   post "first_step" => "session#first_auth", :as => "first_step"
   get "Logout" => "session#destroy", :as => "Logout"
   post "second_step" => "session#second_auth", :as => "second_step"

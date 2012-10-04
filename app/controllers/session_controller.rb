@@ -17,9 +17,10 @@ def second_auth
   user = User.find(session[:user_id])
     respond_to  do |format|
       if user.activate!(params[:code])
-         format.js { render :text => "active" }
+        format.js 
       else 
-         format.js { render :text => "not_activate" }
+        flash[:notice] = 'Code is not correct or 30 sec losted'
+        format.js 
       end
     end
 end

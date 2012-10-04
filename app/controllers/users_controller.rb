@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :require_login, :except => [:new,:create, :index]
   # GET /users
   # GET /users.json
   def index
@@ -13,7 +14,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +35,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
   end
 
   # POST /users
@@ -56,7 +57,7 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -69,15 +70,12 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
+  private
 
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
+  def require_login
+    unless current_user
+      flash[:notice] = "You must be logged in to access this section"
+      redirect_to root_path
     end
   end
 end
