@@ -17,7 +17,7 @@ module Auth
     config.assets.initialize_on_precompile = false
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
-
+    config.assets.precompile += %w(active_admin.css active_admin/print.css active_admin.js)
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
