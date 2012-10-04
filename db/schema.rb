@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(:version => 20121003184405) do
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.boolean  "confirmed",       :default => false
-    t.time     "token_at"
+    t.datetime "token_at"
     t.string   "activetion_code"
   end
 

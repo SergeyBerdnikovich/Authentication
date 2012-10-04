@@ -1,6 +1,8 @@
 <p class="text-error"><%= flash[:notice]%></p>
 <h1>Listing users</h1>
 
+<%= paginate @users %>
+
 <table class="table table-striped"> <tr>
     <th>Gravatar</th>
     <th>Login</th>
@@ -17,3 +19,7 @@
   </tr>
 <% end %>
 </table>
+
+ <%= paginate @users %>
+
+

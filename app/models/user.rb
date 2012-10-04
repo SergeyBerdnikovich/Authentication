@@ -1,7 +1,7 @@
 require_relative "../validator/email_validator"
 require 'bcrypt'
 class User < ActiveRecord::Base
-
+  paginates_per 10
   has_secure_password
   attr_accessible :email, :fullname, :login, :password, :password_confirmation, :two_step_auth
 

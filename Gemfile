@@ -34,6 +34,8 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 gem 'activeadmin'
 
+gem 'kaminari'
+
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 

@@ -192,6 +192,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 3.2.1)
   jquery-rails
+  kaminari
   rails (= 3.2.8)
   rspec-rails
   sass-rails (~> 3.2.3)
