@@ -36,11 +36,19 @@ class User < ActiveRecord::Base
     end
 
     def activate!(code)        
-    if (31.seconds.ago < self.updated_at) && (self.activetion_code == Digest::MD5.hexdigest(code))
+      if (31.seconds.ago < self.updated_at) && (self.activetion_code == Digest::MD5.hexdigest(code))
         self.update_attribute(:confirmed, true)
 
         true
       else
+        nil
+      end
+    end
+
+    def simple_activate!
+      if self.update_attribute(:confirmed, true)
+        true
+      else 
         nil
       end
     end

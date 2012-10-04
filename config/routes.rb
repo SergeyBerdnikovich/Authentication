@@ -3,10 +3,9 @@ Auth::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  resources :users, :only => [:new, :create, :index]
+  resources :users, :only => [:new, :create, :index, :update]
 
   match "Signup" => "users#new"
-  put "update" => "users#update", :as => "update"
   get "edit" => "users#edit", :as => "edit"
   get "show" => "users#show", :as => "show"
   post "first_step" => "session#first_auth", :as => "first_step"
